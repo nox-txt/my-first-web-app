@@ -1,25 +1,26 @@
-// ここからコードを書いてください
 export function setupTabs() {
-  // タブの設定を行うコード
-  // [data-tab="home"] を持つ要素を取得
   const homeLink = document.querySelector('[data-tab="home"]');
-
-  // [data-tab="converter"] を持つ要素を取得
+  const flashcardsLink = document.querySelector('[data-tab="flashcards"]');
   const converterTab = document.querySelector('[data-tab="converter"]');
-
-  // id="home" の要素を取得
-  const homeSection = document.querySelector("#home");
-
-  // id="converter" の要素を取得
-  const converterSection = document.querySelector("#converter");
+  const homeSection = document.getElementById("home");
+  const flashcardsSection = document.getElementById("flashcards");
+  const converterSection = document.getElementById("converter");
 
   homeLink.addEventListener("click", () => {
-    converterSection.classList.add("hidden"); // 単位セクションを隠す
-    homeSection.classList.remove("hidden"); // ホームセクションを表示
+    converterSection.classList.add("hidden");
+    flashcardsSection.classList.add("hidden");
+    homeSection.classList.remove("hidden");
   });
 
   converterTab.addEventListener("click", () => {
     homeSection.classList.add("hidden");
+    flashcardsSection.classList.add("hidden");
     converterSection.classList.remove("hidden");
+  });
+
+  flashcardsLink.addEventListener("click", () => {
+    homeSection.classList.add("hidden");
+    converterSection.classList.add("hidden");
+    flashcardsSection.classList.remove("hidden");
   });
 }

@@ -57,6 +57,21 @@ ul {
   text-decoration: none;
 }
 
+.sidebar-menu {
+  padding: 20px 0;
+}
+.sidebar-menu-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #757575;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sidebar-menu-item:hover {
+  background-color: #d9e7f3;
+}
+
 /* メインコンテンツ */
 .main-content {
   flex: 1;
@@ -111,24 +126,6 @@ ul {
   padding: 32px;
 }
 
-/* 単位変換セクションのスタイルを以下に記載してください */
-.hidden {
-  display: none;
-}
-.sidebar-menu {
-  padding: 20px 0;
-}
-.sidebar-menu-item {
-  padding: 10px 20px;
-  cursor: pointer;
-  color: #757575;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.sidebar-menu-item:hover {
-  background-color: #d9e7f3;
-}
 /* コンバーターカード */
 .converter-card {
   background-color: #ffffff;
@@ -179,4 +176,76 @@ ul {
   font-size: 1.125rem;
   font-weight: 500;
   color: #4f7cac;
+}
+
+/* 暗記カードセクションのスタイルを以下に記載してください */
+/* 暗記カードセクション */
+#flashcards-list {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(3, 1fr); /* 3列 */
+  gap: 16px;
+  padding: 32px;
+}
+
+@media (min-width: 768px) {
+  .flashcards-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .flashcards-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.flashcard {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+.flashcard-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.flashcard-title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+}
+.flashcard-icons {
+  display: flex;
+  gap: 8px;
+  border: 0 solid;
+}
+.flashcard-meaning {
+  color: #6b7280;
+}
+
+.flashcard-meaning:hover {
+  color: #007bff;
+}
+
+.flashcard-toggle {
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.flashcard-icons button {
+  border: 0 solid;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.flashcard-icons button span {
+  font-size: 1.125rem;
+}
+
+/* .hidden クラス */
+.hidden {
+  display: none;
 }
