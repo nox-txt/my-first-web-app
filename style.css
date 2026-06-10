@@ -249,3 +249,104 @@ ul {
 .hidden {
   display: none;
 }
+.add-word-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.add-word {
+  padding: 8px 16px;
+  background-color: #4f7cac;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0 solid;
+}
+
+.add-word:hover {
+  background-color: #3e6690;
+  transform: translateY(-2px);
+}
+
+.add-word:active {
+  transform: translateY(0);
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-width: 448px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #2f2f2f;
+}
+
+.modal-form .form-group {
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancel-word {
+  padding: 8px 16px;
+  background-color: #e0e0e0;
+  color: #757575;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cancel-word:hover {
+  background-color: #cfcfcf;
+}
+
+.save-word {
+  padding: 8px 16px;
+  background-color: #4f7cac;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.save-word:hover {
+  background-color: #3e6690;
+}
