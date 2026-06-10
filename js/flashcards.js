@@ -1,8 +1,12 @@
 // サーバーからデータを取得する関数を作成してください
 
 export async function setupFlashcards() {
-  // 表示エリアの要素を取得
   const flashcardsList = document.querySelector("#flashcards-list");
+
+  const addWordButton = document.querySelector(".add-word");
+  const wordModal = document.querySelector("#word-modal");
+  const wordForm = document.querySelector("#word-form");
+  const cancelWordButton = document.querySelector(".cancel-word");
 
   // ① fetchFlashcards 関数（サーバーからデータ取得）
   async function fetchFlashcards() {
@@ -15,7 +19,6 @@ export async function setupFlashcards() {
       return [];
     }
   }
-
   // ② renderFlashcards 関数（画面に表示）
   async function renderFlashcards(wordList) {
     flashcardsList.innerHTML = ""; // 表示エリアを空にする
@@ -66,6 +69,64 @@ export async function setupFlashcards() {
     await renderFlashcards(data);
   }
 
+  // モーダルを表示する関数
+  function showModal() {
+    wordModal.classList.remove("hidden");
+    document.querySelector("#word-input").focus(); // 入力欄にカーソルを自動で合わせる
+  }
+
+  // モーダルを非表示にする関数
+  function hideModal() {
+    wordModal.classList.add("hidden");
+    wordForm.reset(); // フォームの内容をリセット
+  }
+
+  // 単語追加ボタンをクリックしたときの処理
+  addWordButton.addEventListener("click", showModal);
+
+  // キャンセルボタンをクリックしたときの処理
+  cancelWordButton.addEventListener("click", hideModal);
+
+  // モーダルの背景をクリックしたときの処理
+  wordModal.addEventListener("click", function (event) {
+    if (event.target === wordModal) {
+      hideModal();
+    }
+  });
+
+  // フォームを送信したときの処理
+  async function save(event) {
+    event.preventDefault(); // フォームのデフォルトの送信動作を防止する
+    const wordInput = document.querySelector("#word-input").value.trim();
+    const meaningInput = document.querySelector("#meaning-input").value.trim();
+    const newWord = {
+      id: Date.now(),
+      word: wordInput,
+      meaning: meaningInput,
+    };
+    await createFlashcardData(newWord);
+    await readFlashcards();
+    hideModal();
+  }
+
+  // 単語を保存する関数
+  async function createFlashcardData(wordData) {
+    try {
+      // fetch を使ってサーバーに POST リクエストを送る
+      const response = await fetch("/api/flashcards", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(wordData),
+      });
+      return await response.json(); // サーバーから返されたデータを返す
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  }
+
+  // save 関数の外に出す
+  wordForm.addEventListener("submit", save);
   //  最後に呼び出す
   await readFlashcards();
 }
